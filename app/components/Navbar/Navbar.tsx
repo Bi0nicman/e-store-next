@@ -25,7 +25,7 @@ export function Navbar() {
       document.removeEventListener("keydown", onKeyDown);
     }
   }, []);
-  
+
   return (
     <header className="border-b border-purple-600 bg-slate-900 text-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8" aria-label="Global">

@@ -9,7 +9,7 @@ export async function GET(req: Request) {
   const searchParams = new URLSearchParams();
   searchParams.set("key", apiKey);
   searchParams.set("page", '1');
-
+   searchParams.set("page_size", '10');
   
   // chiamata all'API esterna con la key
   const upstream = await fetch(`https://api.rawg.io/api/games?${searchParams.toString()}`, {
