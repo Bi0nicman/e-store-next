@@ -20,7 +20,7 @@ export const Card = React.memo(function Card({
 }: CardProps) {
   const pathNoPicture = "/no_photo.jpg";
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-emerald-950">
+    <div className="max-w-sm max-h-lg rounded overflow-hidden shadow-lg bg-emerald-950">
       <Image className="w-full h-60 object-cover" src={imgLink || pathNoPicture}
         width={540}
         height={360}

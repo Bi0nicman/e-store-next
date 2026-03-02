@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Game } from '../interfaces/games';
 
-interface GamesStore {
+export interface GamesStore {
   id: number
   name: string
 }

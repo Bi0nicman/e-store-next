@@ -30,8 +30,22 @@ export async function createUsers(payload: CreateUserPayload) {
     body: JSON.stringify(payload),
   });
 
-  if (!res.ok) throw new Error('Failed to create user');
-  return res.json();
+  const rawResponse = await res.text();
+  if (!res.ok) {
+    let message = rawResponse || 'Failed to create user';
+    try {
+      const errJson = rawResponse ? JSON.parse(rawResponse) : null;
+      message = errJson?.message ?? errJson?.error ?? message;
+    } catch {}
+    throw new Error(`createUsers failed (${res.status}): ${message || "empty response"}`);
+  }
+  
+  // Handle empty response (204 No Content or empty body)
+  if (!rawResponse || rawResponse.trim() === '') {
+    return { success: true };
+  }
+  
+  return JSON.parse(rawResponse);
 }
 
 export async function authenticateUser(formData: FormData) {

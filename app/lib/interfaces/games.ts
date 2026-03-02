@@ -4,10 +4,31 @@ export type EsrbRating = {
   name: string;
 }
 
+export type Rating = {
+  id: number;
+  title: string;
+  count: number;
+  percent: number;
+}
+
+export type AddedByStatus = {
+  yet: number;
+  owned: number;
+  beaten: number;
+  toplay: number;
+  dropped: number;
+  playing: number;
+}
+
 export type PlatformDetails = {
   id: number;
   slug: string;
   name: string;
+  image: string | null,
+  year_end: string | null,
+  year_start: number | null,
+  games_count: number,
+  image_background: string;
 }
 
 export type Requirements = {
@@ -18,7 +39,9 @@ export type Requirements = {
 export type Platform = {
   platform: PlatformDetails;
   released_at: string;
-  requirements: Requirements;
+  requirements_en: Requirements | null,
+  requirements_ru: Requirements | null
+  requirements?: Requirements;
 }
 
 export type Game = {
@@ -30,17 +53,20 @@ export type Game = {
   background_image: string;
   rating: number;
   rating_top: number;
-  ratings: object;
+  ratings: Rating[];
   ratings_count: number;
-  reviews_text_count: string;
+  reviews_text_count: string | number;
+  reviews_count: number;
   added: number;
-  added_by_status: object;
-  description: string;
+  added_by_status: AddedByStatus;
+  description?: string;
   metacritic: number;
   playtime: number;
   suggestions_count: number;
   updated: string;
-  esrb_rating: EsrbRating;
+  saturated_color: string;
+  dominant_color: string;
+  esrb_rating?: EsrbRating;
   platforms: Platform[];
 }
 

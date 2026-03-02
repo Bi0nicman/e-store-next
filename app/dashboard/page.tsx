@@ -36,7 +36,6 @@ export default function Dashboard() {
     if (favouriteIds.has(id)) {
       dispatch(removeFavoriteGame(id));
     } else {
-      console.log("aggiungo ai preferiti", game);
       dispatch(addFavoriteGame(game));//game diventa payload, quando chiamiamo addFavoriteGame 
       // costruiamo un azione {type: 'favourites/addFavoriteGame', payload: game}
     }
