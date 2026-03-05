@@ -1,4 +1,5 @@
 import favouritesReducer from './slices/gameSlice'
+import authReducer from './slices/authSlice'
 import { configureStore } from '@reduxjs/toolkit'
 import { gamesApi } from "./services/gamesApi";
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
@@ -6,6 +7,7 @@ export const store = configureStore({
   reducer: {
     favourites: favouritesReducer,
     [gamesApi.reducerPath]: gamesApi.reducer,
+    user: authReducer,
   }, 
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(gamesApi.middleware),

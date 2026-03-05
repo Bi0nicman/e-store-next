@@ -61,9 +61,31 @@ export async function authenticateUser(formData: FormData) {
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify(payload),
   });
 
   if (!res.ok) throw new Error('Failed to authenticate user');
+  return res.json();
+}
+
+export async function fetchCurrentUser() {
+  const res = await fetch(`${API_BASE_URL}/auth/user`, {
+    method: 'GET',
+    cache: 'no-store',
+    credentials: 'include',
+  });
+  if (!res.ok) throw new Error('Failed to fetch current user');
+  return res.json();
+}
+
+
+export async function logoutUser() {
+  const res = await fetch(`${API_BASE_URL}/auth/logout`, {
+    method: 'POST',
+    cache: 'no-store',
+    credentials: 'include',
+  });
+  if (!res.ok) throw new Error('Failed to logout user');
   return res.json();
 }
