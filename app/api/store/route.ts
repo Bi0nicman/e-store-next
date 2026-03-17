@@ -20,8 +20,9 @@ export async function GET(req: Request) {
   /*
   no-cache significa puoi anche usare la cache, ma devi prima “ricontrollare” col server (revalidate) se è ancora valida.
   no-store invece dice di non usare la cache in nessun modo, e di andare sempre a prendere i dati freschi dal server.
+  30002 è l'ip del node
   */
-  const upstream = await fetch(`http://localhost:3002/users/user}`, {
+  const upstream = await fetch(`http://localhost:30002/users/user}`, {
     cache: "no-store",
   });
 

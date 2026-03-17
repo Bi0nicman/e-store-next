@@ -1,6 +1,6 @@
 
 export interface Authentication {
   publicId: number
-  user: string
+  username: string
   email?: string
 }

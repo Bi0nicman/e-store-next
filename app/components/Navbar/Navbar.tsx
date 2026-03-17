@@ -10,7 +10,7 @@ import { authenticateUser, fetchCurrentUser, logoutUser } from "@/app/lib/servic
 import { useDispatch } from "react-redux";
 import { storeUser, clearUser } from "@/app/lib/slices/authSlice";
 import { useSelector } from "react-redux";
-import { RootState } from "@reduxjs/toolkit/query";
+import { RootState } from "@/app/lib/store";
 import { ProfileDropdown } from "./ProfileDropdown/ProfileDropdown";
 import { SearchInput } from "./Searchbar/SearchInput";
 

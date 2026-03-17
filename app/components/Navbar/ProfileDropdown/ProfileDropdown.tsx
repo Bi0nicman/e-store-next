@@ -1,9 +1,5 @@
 "use client";
 import { useState } from "react";
-import styles from "./SignIn.module.css";
-import { errorsLabels } from "./consts/const";
-import { RootState } from "@/app/lib/store";
-
 interface DropdownModalProps {
   onSignOut: () => Promise<void>;
 }
