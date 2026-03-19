@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:30002';
+const API_BASE_URL = '';
 
 type CreateUserPayload = {
   firstName: string;
