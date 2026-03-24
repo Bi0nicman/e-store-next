@@ -1,6 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { Game } from "../interfaces/games";
 
+export type GamesQueryParams = {
+  search?: string;
+  page?: number;
+  page_size?: number;
+  ordering?: string;
+  genres?: string;
+};
+
 type GamesResponse = { results: Game[] };
 /*
 RTK Query è una libreria per gestire le chiamate API in modo automatico. Ti evita di scrivere manualmente:
@@ -16,13 +24,15 @@ export const gamesApi = createApi({
   
   endpoints: (builder) => ({
     // Endpoint 1: Cerca giochi
-    searchGames: builder.query<Game[], string>({
-      query: (term) => ({
+    searchGames: builder.query<Game[], GamesQueryParams>({
+      query: (params) => ({
         url: "games",  // Chiama /api/games
-        params: term ? { search: term } : undefined,  // Aggiunge ?search=term
+        params,  // Aggiunge ?search=term
       }),
       transformResponse: (r: GamesResponse) => r.results,  // Estrae solo i risultati
     }),
+
+
     
     // Endpoint 2: Dettaglio gioco
     getGameById: builder.query<Game, number>({
