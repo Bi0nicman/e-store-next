@@ -16,8 +16,7 @@ fetch,estione di loading, error, data
 Cache dei dati
 Re-fetching automatico
 */
-
-// Crei un "servizio API" con createApi
+console.log("PROCESSO",process.env.BASE_URL)
 export const gamesApi = createApi({
   reducerPath: "gamesApi",  // Nome univoco nello store Redux
   baseQuery: fetchBaseQuery({ baseUrl: process.env.BASE_URL ?? "/api" }), // Base URL per tutte le chiamate
