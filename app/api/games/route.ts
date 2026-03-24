@@ -21,7 +21,7 @@ export async function GET(req: Request) {
   no-cache significa puoi anche usare la cache, ma devi prima “ricontrollare” col server (revalidate) se è ancora valida.
   no-store invece dice di non usare la cache in nessun modo, e di andare sempre a prendere i dati freschi dal server.
   */
-  const backendUrl = process.env.BACKEND_URL ?? "http://my-game-store.project";
+  const backendUrl = process.env.HOST_URL ?? "http://my-game-store.project";
   const upstream = await fetch(`${backendUrl}/api/game/games?${upstreamParams.toString()}`, {
     cache: "no-store",
   });
