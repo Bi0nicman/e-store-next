@@ -25,12 +25,6 @@ export default function Dashboard() {
     [favourites]
   )
 
-  /*   const loadGames = async () => {
-      const res = await fetch(`/api/games`);
-      const data = await res.json();
-      return data.results;
-    } */
-
   const onToggleFavorite = useCallback((id: number) => {
     const game = games.find(g => g.id === id);
     if (!game) return;
