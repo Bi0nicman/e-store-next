@@ -3,7 +3,7 @@ import Link from "next/link";
 import { NAV_LINKS } from "../../lib/constants/navbar";
 import { useCallback, useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
-import { useSearchGamesQuery } from "@/app/lib/services/gamesApi";
+import { GamesQueryParams, useSearchGamesQuery } from "@/app/lib/services/gamesApi";
 import { useAppSelector } from "@/app/lib/hooks";
 import { SignInModal } from "./modalSignIn/SignIn";
 import { authenticateUser, fetchCurrentUser, logoutUser } from "@/app/lib/services/eStoreApi";
@@ -17,10 +17,10 @@ import { SearchInput } from "./Searchbar/SearchInput";
 export function Navbar() {
   const dispatch = useDispatch();
   const [showSearch, setShowSearch] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<GamesQueryParams>({});
   const selector = useAppSelector((state) => state.favourites);
   const { data: searchResults, isFetching } = useSearchGamesQuery(searchTerm, {
-    skip: searchTerm.length < 3,
+    skip: (searchTerm.search?.length ?? 0) < 3,
   });
 
   const user = useSelector((state: RootState) => state.user);
@@ -28,18 +28,18 @@ export function Navbar() {
   const onKeyDown = useCallback((event: KeyboardEvent) => {
     if (event.key === "Escape") {
       setShowSearch(false);
-      setSearchTerm("");
+      setSearchTerm({search:""});
     }
   }, []); const triggerSearch = () => {
     setShowSearch(canShow => !canShow);
     if (showSearch) {
-      setSearchTerm("");
+      setSearchTerm({search:""});
     }
   }
 
   const closeSearch = () => {
     setShowSearch(false);
-    setSearchTerm("");
+    setSearchTerm({search:""});
   };
 
   const handleUserData = async () => {
@@ -107,8 +107,8 @@ export function Navbar() {
 
         <SearchInput
           showSearch={showSearch}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
+          searchTerm={searchTerm.search ?? ""}
+          setSearchTerm={(term) => setSearchTerm({ search: term })}
           closeSearch={closeSearch}
           triggerSearch={triggerSearch}
           isFetching={isFetching}
