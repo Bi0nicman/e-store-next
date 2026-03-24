@@ -20,7 +20,7 @@ Re-fetching automatico
 // Crei un "servizio API" con createApi
 export const gamesApi = createApi({
   reducerPath: "gamesApi",  // Nome univoco nello store Redux
-  baseQuery: fetchBaseQuery({ baseUrl: "/api/game" }), // Base URL per tutte le chiamate
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.BASE_URL ?? "/api" }), // Base URL per tutte le chiamate
   
   endpoints: (builder) => ({
     // Endpoint 1: Cerca giochi
