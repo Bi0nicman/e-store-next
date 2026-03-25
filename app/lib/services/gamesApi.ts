@@ -16,9 +16,11 @@ fetch,estione di loading, error, data
 Cache dei dati
 Re-fetching automatico
 */
+const isLocal = typeof window !== "undefined" && window.location.hostname === "localhost";
+
 export const gamesApi = createApi({
   reducerPath: "gamesApi",  // Nome univoco nello store Redux
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_BASE_URL ?? "/api" }), // Base URL per tutte le chiamate
+  baseQuery: fetchBaseQuery({ baseUrl: isLocal ? "/api/game" : "/api" }), // Base URL per tutte le chiamate
   
   endpoints: (builder) => ({
     // Endpoint 1: Cerca giochi
