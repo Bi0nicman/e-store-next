@@ -19,7 +19,7 @@ Re-fetching automatico
 console.log("PROCESSO",process.env.BASE_URL)
 export const gamesApi = createApi({
   reducerPath: "gamesApi",  // Nome univoco nello store Redux
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.BASE_URL ?? "/api" }), // Base URL per tutte le chiamate
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_BASE_URL ?? "/api" }), // Base URL per tutte le chiamate
   
   endpoints: (builder) => ({
     // Endpoint 1: Cerca giochi
