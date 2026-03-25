@@ -20,7 +20,7 @@ const isLocal = typeof window !== "undefined" && window.location.hostname === "l
 
 export const gamesApi = createApi({
   reducerPath: "gamesApi",  // Nome univoco nello store Redux
-  baseQuery: fetchBaseQuery({ baseUrl: isLocal ? "/api/game" : "/api" }), // Base URL per tutte le chiamate
+  baseQuery: fetchBaseQuery({ baseUrl: isLocal ? "/api" : "/api/game" }), // Base URL per tutte le chiamate
   
   endpoints: (builder) => ({
     // Endpoint 1: Cerca giochi
